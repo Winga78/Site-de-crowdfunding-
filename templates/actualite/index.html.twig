@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Actualité{% endblock %}
+
+
+
+{% block body %}
+<br>
+{% for projet in projets%}
+
+<div class="row-center">
+  <div class="col-sm-6">
+    <div class="card">
+      <div class="card-body">
+	  <p> 🟡 <i>{{projet.createdBy.nom }} {{projet.createdBy.prenom }} a publié </i><p>
+	   <img src="{{asset('uploads/brochures/' ~  projet.image )}}" class="card-img-top" alt="image">
+        <h5 class="card-title">{{projet.titre}}</h5>
+		<h6> {{projet.budget}} $ </h6>
+        <p class="card-text">{{projet.description}}</p>
+        <a href="{{path('financer', {'id':projet.id}) }}" class="btn btn-outline-warning">détails</a>
+      </div>
+    </div>
+  </div>
+
+</div>
+<br>
+{% endfor %}
+
+{% endblock %}
+

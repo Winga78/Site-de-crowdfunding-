@@ -1,0 +1,74 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello InvestirController!{% endblock %}
+
+{% block body %}
+{% if notification %} 
+	 <div class ="alert alert-sucess"  role="alert"> {{notification}}</div> 
+	 {%endif%}
+	 {% if messagefin != null %} 
+			{{messagefin}} <br>
+			 <a class="link-warning" href="{{path('actualite') }}  " > vous pouvez financer d'autre projet ici  </a>
+	  {%else%}
+	 <br>
+	<br>
+	<section class = "form">
+		<div class= "container"> 
+			<div class="row">
+			<div class="col"></div>
+		<div class="col-6">
+		  
+		
+		
+			<div>
+			<h1>{{projet.titre}}<h1>
+			</div> 
+			<div>
+			{{projet.description}} <br> <br>
+			{{projet.budget}}$
+			</div>
+			<br>
+		
+			{{form_start(form)}}
+			<i>Ne rajoutez pas de $ </i>
+		<div class = "mb-3>
+		{{ form_label(form.montant,'Montant', {'label_attr': {'class': 'form-label'}})  }}
+		{{form_row(form.montant , {'attr' : {'class' : 'form-control'}})}} 
+		</div>
+		
+		{{form_label(form.commentaire,'Commentaire', {'label_attr': {'class': 'form-label'}})}}
+		{{form_row(form.commentaire, {'attr' : {'class' : 'form-control'}})}} 
+			<br>
+		{{form_end(form)}}
+		
+		
+	
+		</div>
+		<div class="col"></div>
+		
+		</div>
+	</div>
+	
+	{%endif%}
+	
+	{% for i in 0..10 %}
+		<br>
+	{% endfor %}
+
+
+	<strong> <h3> les commentaires </h3></strong> <br>
+	{%for lesfinances in lesfinances%}
+		{% if lesfinances.fundedFor.id == projet.id %}
+	<div class="row align-items-end">
+    <div class="col">
+       {{lesfinances.fundedBy.nom }}
+	    {{lesfinances.fundedBy.prenom }} :
+		{{lesfinances.commentaire }}
+    </div>
+    
+  </div>
+</div>
+	{%endif%}
+	{%endfor%}
+	
+{% endblock %}

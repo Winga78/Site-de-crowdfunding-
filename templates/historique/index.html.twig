@@ -1,0 +1,63 @@
+{% extends 'base.html.twig' %}
+
+
+
+{% block body %}
+
+<br>
+<br>
+
+{% block title %}<h1>Bulletin</h1>{% endblock %}
+
+
+<br>
+<br>
+
+	
+			
+			
+	<div class="row d-flex justify-content-around">
+	<div class="col"> 
+		
+	</di>
+						
+				<table class="table">
+					<thead>
+						<tr>
+							<th scope="col"></th>
+							<th scope="col">Projet</th>
+							<th scope="col">Montant</th>
+						
+						</tr>
+					</thead>
+						<tbody>
+						
+		{% for financed in financed%}
+			
+			{% if financed.fundedBy.id == app.user.id %}
+			
+					 <tr>
+						<th scope="row"></th>
+						<td>{{financed.fundedFor.titre}}</td>
+						<td>-{{financed.montant}}</td>
+						{%else%} 
+						<tr>
+						<th scope="row"></th>
+						
+						<td>{{financed.fundedFor.titre}}</td>
+						<td> + {{financed.montant}}</td>
+						
+					 </tr>
+					
+				{%endif%}
+			
+			
+		
+		{% endfor %}
+		
+						</tr>
+					</tbody>
+				</table>
+	
+	<div>
+{% endblock %}
